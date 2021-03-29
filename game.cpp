@@ -15,12 +15,7 @@ std::string randomKey(int lengthKey){
     }
     return randomKey;
 }
-//void validateInputPlayer(std::string input) {
-//    if (input == KEYCOLORS) {
-//        std::cout << " ERROR! Cores digitadas sao invalidas! " << std::endl;
-//        inputPlayer();
-//    }
-//}
+
 std::string inputPlayer(){
     std::string input;
     std::cout<<" Digite chave de cores pelas iniciais em ingles: "<<std::endl;
@@ -28,7 +23,6 @@ std::string inputPlayer(){
     do{
         std::cin >>input;
     } while (input.length() != 4);
-    //validateInputPlayer(input);
     return input;
 }
 

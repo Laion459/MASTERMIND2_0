@@ -9,3 +9,4 @@ const char KEYCOLORS[6] = {'G','B','O','Y','P','R'};
 std::string randomKey(int lengthKey);
 std::string inputPlayer();
 
+
