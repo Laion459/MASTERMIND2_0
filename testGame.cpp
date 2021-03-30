@@ -8,3 +8,6 @@ void testNumberRandomKey(){
 void testInputPlayer(){
     inputPlayer();
 }
+void rodaGame(){
+    verificador(inputPlayer(),randomKey(4));
+}

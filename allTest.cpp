@@ -4,4 +4,5 @@
 void playGame(){
     testNumberRandomKey();
     testInputPlayer();
+    rodaGame();
 }
