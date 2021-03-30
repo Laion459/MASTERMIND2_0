@@ -3,5 +3,4 @@
 #include "game.h"
 
 void testNumberRandomKey();
-void testInputPlayer();
-void rodaGame();
+void testKeySystem();

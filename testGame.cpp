@@ -1,13 +1,8 @@
 #include "testGame.h"
 
 void testNumberRandomKey(){
-    int lengthKey = 4;
-    std::cout<<randomKey(lengthKey);
+    std::cout<<randomKey(4)<<std::endl;
 }
-
-void testInputPlayer(){
-    inputPlayer();
-}
-void rodaGame(){
-    verificador(inputPlayer(),randomKey(4));
+void testKeySystem(){
+    std::cout<<randomKeySystem()<<std::endl;
 }

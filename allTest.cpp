@@ -2,7 +2,7 @@
 #include "allTest.h"
 
 void playGame(){
+    //welcom();
     testNumberRandomKey();
-    testInputPlayer();
-    rodaGame();
+    testKeySystem();
 }
