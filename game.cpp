@@ -147,9 +147,9 @@ std::string validatePinWhiteAndN(std::string inputPlayer,std::string keySystem,s
     for (int i = 0; i < inputPlayer.size(); i++) {
         for (int j = 0; j < inputPlayer.size(); j++) {
             if (inputPlayer[i] == keySystem[j]){
-                feedbeck += 'W';
+                feedbeck[i] += 'W';
             }else{
-                feedbeck += '*';
+                feedbeck[i] += '*';
             }
         }
     }
@@ -166,14 +166,14 @@ std::string feedbeckToInput(std::string inputPlayer,std::string keySystem,std::s
     validatePinWhiteAndN(inputPlayer,keySystem,feedbeck);
     return feedbeck;
 }
-void output(std::string inputPlayer,std::string feedbeck){
-     std::cout<<inputPlayer<<" <= key digitado || feedbeck pins: "<<feedbeck<<std::endl;
+void output(std::string inputPlayer,std::string keySystem,std::string feedbeck){
+     std::cout<<inputPlayer<<" <= key digitado || feedbeck pins: "<< feedbeckToInput(inputPlayer,keySystem,feedbeck)<<std::endl;
 }
 void runGame(){
     std::string input,key,feed;
     welcom();
     key = randomKeySystem();
     input = inputPlayerRandom();
-    output(input,feed);
+    output(input,key,feed);
     std::cout<<feedbeckToInput(input,key,feed);
 }
