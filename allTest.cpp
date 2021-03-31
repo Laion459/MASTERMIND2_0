@@ -3,6 +3,9 @@
 
 void playGame(){
     //welcom();
-    testNumberRandomKey();
-    testKeySystem();
+    //testNumberRandomKey();
+    //testKeySystem();
+    //testinputPlayerRandom();
+    //testWin();
+    runGame();
 }

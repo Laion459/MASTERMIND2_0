@@ -35,9 +35,10 @@ void welcom(){
  * mensagem se vencer / chama menu
  */
 void win(){
-    std::cout<<" **********         You win!         ***********"<<std::endl;
-    std::cout<<" **********  voce venceu com total:  ***********"<<std::endl;//<<funcaoTentativas()<<"x tentativas"
     std::cout<<"                                              "<<std::endl;
+    std::cout<<" **********         You Win!                         ***********"<<std::endl;
+    std::cout<<" **********  voce venceu com total:                  ***********"<<std::endl;//<<funcaoTentativas()<<"x tentativas"
+    std::cout<<" **********  chave secreta : "<<randomKeySystem()<<"                    ***********"<<std::endl;
     menu();
 
 }
@@ -61,14 +62,13 @@ void gameOver(){
 void menu(){
     int option = 0;
     std::cout<<" **** MENU ****"<<std::endl;
-    std::cout<<" 1 voltar ao menu "<<std::endl;
+    std::cout<<" 1 voltar a comecar "<<std::endl;
     std::cout<<" 2 Sair "<<std::endl;
-    std::cout<<" 3 incrivel "<<std::endl;
+    std::cout<<" 3 incrivel sair tambem "<<std::endl;
     std::cin>>option;
     switch (option) {
         case 1:
-            //menu();
-            std::cout<<" legal "<<std::endl;
+            runGame();
             break;
         case 2:
             exit(0);
@@ -76,9 +76,104 @@ void menu(){
             abort();
     }
 }
-std::string inputPlayer(){
+/*
+ * valida o tamanho da entrada de dados.
+ */
+void validateInputLength(std::string inputPlayer){
+    if (inputPlayer.length() != 4){
+        std::cout<<" Error!    Tamanho quantidade de elementos digitada e invalida!"<<std::endl;
+        std::cout<<" Por favor digite novamente!. "<<std::endl;
+        //chama funçao input player
+        abort();
+    }
+}
+/**
+ * valida se as cores digitadas estao corretas
+ * @param inputPlayer entrada de dados do player
+ */
+void validateInputKeys(std::string inputPlayer){
+    for (int i = 0; i < inputPlayer.size(); i++) {
+        for (int j = 0; j < inputPlayer.size(); j++) {
+            if (inputPlayer[i] != KEYCOLORS[j]){
+                std::cout<<" Error!  Cores escolhidas incorretas! "<<std::endl;
+                std::cout<<" Por favor digite novamente: "<<std::endl;
+                //chama funcao digitar input
+                abort();
+            }
+        }
+    }
+}
+/**
+ * Gera entrada de dados de um player de forma aleatoria/randomica.
+ * @return retorna chave(key) criada aleatoriamente.
+ */
+std::string inputPlayerRandom(){
     std::string inputsPlayer;
     inputsPlayer = randomKey(4);
+    validateInputLength(inputsPlayer);
+    //validateInputKeys(inputsPlayer);
     return inputsPlayer;
 }
-
+/**
+ * salva as vidas do jogador
+ * @param lifes numero inteiro de vidas
+ * @return retorna quantas vidam restam
+ */
+int lifesPlayer(int lifes){
+    lifes--;
+    return lifes;
+}
+/**
+ * verifia se venceu comparando se chaves(key) sao iguais
+ * @param inputPlayer entrada de dados do player
+ * @param keySystem chave(key) do sistema
+ */
+void checkWin(std::string inputPlayer,std::string keySystem){
+    std::string feedbeck;
+    for (int i = 0; i < inputPlayer.size(); i++) {
+        if (inputPlayer == keySystem){
+            feedbeck[i] += 'B';
+        }
+    }
+    win();
+}
+/**
+ * valida o pin de feedbeck white and N
+ * @param inputPlayer entrada da chave(key) do player
+ * @param keySystem chave(key) do sistema
+ * @return feedbeck para o player
+ */
+std::string validatePinWhiteAndN(std::string inputPlayer,std::string keySystem,std::string feedbeck){
+    for (int i = 0; i < inputPlayer.size(); i++) {
+        for (int j = 0; j < inputPlayer.size(); j++) {
+            if (inputPlayer[i] == keySystem[j]){
+                feedbeck += 'W';
+            }else{
+                feedbeck += '*';
+            }
+        }
+    }
+    return feedbeck;
+}
+/**
+ * quantifica os acertos e retorna um feedbeck pelas cores
+ * @param inputPlayer chave(key) de entrada do player
+ * @param keySystem chave(key) so sistema
+ * @return retorna feedbeck
+ */
+std::string feedbeckToInput(std::string inputPlayer,std::string keySystem,std::string feedbeck){
+    checkWin(inputPlayer,keySystem);
+    validatePinWhiteAndN(inputPlayer,keySystem,feedbeck);
+    return feedbeck;
+}
+void output(std::string inputPlayer,std::string feedbeck){
+     std::cout<<inputPlayer<<" <= key digitado || feedbeck pins: "<<feedbeck<<std::endl;
+}
+void runGame(){
+    std::string input,key,feed;
+    welcom();
+    key = randomKeySystem();
+    input = inputPlayerRandom();
+    output(input,feed);
+    std::cout<<feedbeckToInput(input,key,feed);
+}
