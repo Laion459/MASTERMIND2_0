@@ -109,7 +109,9 @@ void validateInputKeys(std::string inputPlayer){
  */
 std::string inputPlayerRandom(){
     std::string inputsPlayer;
-    inputsPlayer = randomKey(4);
+    std::cout<<" Digite chave com as iniciais das cores: "<<std::endl;
+    std::cin >> inputsPlayer;
+    //inputsPlayer = randomKey(4);
     validateInputLength(inputsPlayer);
     //validateInputKeys(inputsPlayer);
     return inputsPlayer;
@@ -153,6 +155,7 @@ std::string validatePinWhiteAndN(std::string inputPlayer,std::string keySystem,s
             }
         }
     }
+    std::cout<<feedbeck<<" teste feed "<<std::endl;
     return feedbeck;
 }
 /**
@@ -174,6 +177,7 @@ void runGame(){
     welcom();
     key = randomKeySystem();
     input = inputPlayerRandom();
+    //feed = feedbeckToInput(input,key,feed);
     output(input,key,feed);
     std::cout<<feedbeckToInput(input,key,feed);
 }
