@@ -52,6 +52,12 @@ void gameOver(){
     menu();
 
 }
+void validateInputMenu(int option){
+    if (option < 1 || option > 4){
+        std::cout<<" Opcao invalida! Por favor digite novamente: "<<std::endl;
+        menu();
+    }
+}
 /*
  * menu opcoes / menu principal
  * 1 para iniciar jogo
@@ -60,13 +66,14 @@ void gameOver(){
  * 4 para encerrar o programa
  */
 void menu(){
-    int option = 0;
+    int options = 0;
     std::cout<<" **** MENU ****"<<std::endl;
     std::cout<<" 1 voltar a comecar "<<std::endl;
     std::cout<<" 2 Sair "<<std::endl;
     std::cout<<" 3 incrivel sair tambem "<<std::endl;
-    std::cin>>option;
-    switch (option) {
+    std::cin >> options;
+    validateInputMenu(options);
+    switch (options) {
         case 1:
             runGame();
             break;
@@ -108,10 +115,10 @@ void validateInputKeys(std::string inputPlayer){
  * @return retorna chave(key) criada aleatoriamente.
  */
 std::string inputPlayerRandom(){
-    std::string inputsPlayer;
-    std::cout<<" Digite chave com as iniciais das cores: "<<std::endl;
-    std::cin >> inputsPlayer;
-    //inputsPlayer = randomKey(4);
+   std::string inputsPlayer;
+   //std::cout<<" Digite chave com as iniciais das cores: "<<std::endl;              //deletar aopos o teste***
+   //std::cin >> inputsPlayer;
+    inputsPlayer = randomKey(4);
     validateInputLength(inputsPlayer);
     //validateInputKeys(inputsPlayer);
     return inputsPlayer;

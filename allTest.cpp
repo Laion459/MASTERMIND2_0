@@ -1,4 +1,3 @@
-
 #include "allTest.h"
 
 void playGame(){

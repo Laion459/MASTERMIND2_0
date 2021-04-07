@@ -1,6 +1,6 @@
 #pragma once
-
 #include "game.h"
+
 /*
  * testa chave(key) criada randomicamente.
  */
